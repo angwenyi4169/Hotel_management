@@ -8,6 +8,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	color: #E8E8E8;
 	padding: 5px 10px;
 }
+
+.custom-form{
+	padding: 0px;
+	margin: 0px;
+}
 html, body{
   	font-family: 'Open Sans', sans-serif;
     font-size: 100%;

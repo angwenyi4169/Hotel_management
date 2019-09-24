@@ -1,0 +1,45 @@
+from django.contrib.auth.models import User
+from django.db import models
+
+
+# class Customer(AbstractUser):
+#     # add additional fields in here
+#     id_number = models.CharField(max_length=8)
+#     phone_number = models.CharField(max_length=10)
+
+#     def __str__(self):
+#         return self.email
+
+CATEGORY_CHOICES = [
+    ('sdd', 'Standard Double Room'),
+    ('sdr', 'Superior Double Room'),
+    ('frm', 'Family Room'),
+    ('str', 'Standard Single Room'),
+    ('ssr', 'Superior Single Room'),
+    ('vip', 'VIP Room'),
+]
+
+class Category(models.Model):
+    name = models.CharField(max_length=3, choices=CATEGORY_CHOICES, unique=True)
+    description = models.TextField()
+    #TODO: Storing images
+
+    def __str__(self):
+        return self.name
+
+
+class Room(models.Model):
+    room_number = models.PositiveIntegerField(unique=True)
+    number_of_beds = models.PositiveSmallIntegerField(default=1)
+    price = models.PositiveIntegerField(default=1)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{} - {}".format(self.room_number, self.category.name)
+
+
+class Booking(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    checkin_date = models.DateField()
+    checkout_date = models.DateField()

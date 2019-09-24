@@ -1,95 +1,33 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script>var CMS_STATIC = "static/index.html";</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!--Workaround for fixing Django CMS issues-->
-    <script src="{% static 'hotel_management/js/FixTemplate.js/index.html' %}"></script>
-    <meta name="comment" content="The template was modified by Nuwainfo.com">
-    <meta name="description" content="None">
-    <title>hotel-fortune bootstrap Design website | Home :: w3layouts</title>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,600,700,800"
-        rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Pinyon+Script" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet" type="text/css">
-    <link href="{% static 'hotel_management/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'hotel_management/css/style.css' %}" media="all" rel="stylesheet" type="text/css">
-    <link href="{% static 'hotel_management/css/jquery-ui.css' %}" rel="stylesheet">
-    <link href="{% static 'hotel_management/css/JFFormStyle-1.css' %}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Hotel Management System</title>
-</head>
-
-<body>
-    <div class="header">
-        <div class="top-header">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="{% static 'hotel_management/images/logo.png' %}">
-                    </a>
-                </div>
-                <span class="menu"> </span>
-                <div class="m-clear"></div>
-                <div class="top-menu">
-                    <ul>
-                        <li class="active">
-                            <a href="index.html">HOME</a>
-                        </li>
-                        <li>
-                            <a href="booking/index.html" class="scroll">BOOKING</a>
-                        </li>
-                        <li>
-                            <a href="contact/index.html" class="scroll">CONTACT US</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <div class="banner">
-            <div class="banner-info text-center">
-                <h3>
-                    <label>Hello,</label>
-                    Welcome to
-                </h3>
-                <h1>HOTEL FORTUNE</h1>
-                <span></span>
-            </div>
-        </div>
-    </div>
+{% block content %}
     <div class="online_reservation">
         <div class="b_room">
             <div class="booking_room">
                 <div class="reservation">
+                    <form class="custom-form" action='/search' method="GET">
                     <ul>
                         <li class="span1_of_1 left">
                             <h5>Arrival</h5>
                             <div class="book_date">
-                                <form>
-                                    <input type="text" value="2/08/2013" class="date" id="datepicker">
-                                </form>
+                                <div>
+                                    <input name="checkin" type="text" value="2/08/2013" class="date" id="datepicker">
+                                </div>>
                             </div>
                         </li>
                         <li class="span1_of_1 left">
                             <h5>Depature</h5>
                             <div class="book_date">
-                                <form>
-                                    <input type="text" value="22/08/2013" class="date" id="datepicker1">
-                                </form>
+                                <div>
+                                    <input name="checkout" type="text" value="22/08/2013" class="date" id="datepicker1">
+                                </div>
                             </div>
                         </li>
                         <li class="span1_of_1">
                             <h5>Room type</h5>
 
                             <div class="section_room">
-                                <select class="frm-field required" id="country">
+                                <select name="category" class="frm-field required" id="country">
                                     <option value="null">Standard Single Room</option>
                                     <option value="null">Suite room</option>
                                     <option value="AX">Single room</option>
@@ -99,14 +37,14 @@
                         </li>
                         <li class="span1_of_3">
                             <div class="date_btn">
-                                <form>
-                                    <input type="submit" value="Check Availability">
-                                </form>
+                                <div>
+                                    <input name="submit" type="submit" value="Check Availability">
+                                </div>
                             </div>
                         </li>
                         <div class="clearfix"></div>
                     </ul>
-
+                </form>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -158,58 +96,4 @@
             </div>
         </div>
     </div>
-    <div class="fotter">
-        <div class="container">
-            <h3>143 City Located Hotels World Wide</h3>
-            <h4>"Hospitality, Quality &amp; Good Locations. We only provide you with the best hotels" - John Deo</h4>
-            <i class="man"></i>
-        </div>
-    </div>
-    <div class="fotter-info">
-        <div class="container">
-            <div class="col-md-7 details">
-                <div class="hotel-info">
-                    <h4>ABOUT THIS HOTEL</h4>
-                    <p>Suspendisse erat mi, tincidunt sit amet massa quis, commodo fermentum diam. Sed nec dui nec nunc
-                        tempor interdum.</p>
-                    <p>Ut vulputate augue urna, ut porta dolor imperdiet a. Vestibulum nec leo eu magna aliquam ornare.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-5 details">                
-                <div class="member">
-                    <!-- <h4>SOCIAL</h4> -->
-                    <i class="fa fa-facebook fa-3x" aria-hidden="true"></i>
-                    <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
-                    <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
-                    <i class="fa fa-youtube-play fa-3x" aria-hidden="true"></i>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
-    <script src="{% static 'hotel_management/js/jquery.min.js' %}"></script>
-    <script src="{% static 'hotel_management/js/JFCore.js' %}" type="text/javascript"></script>
-    <script src="{% static 'hotel_management/js/JFForms.js' %}" type="text/javascript"></script>
-    <script>
-        $("span.menu").click(function () {
-            $(".top-menu ul").slideToggle(200);
-        });
-    </script>
-    <script>
-            $(function() {
-              $( "#datepicker,#datepicker1" ).datepicker();
-            });
-    </script>
-    <script type="text/javascript">
-        (function () {
-            JC.init({
-                domainKey: ''
-            });
-        })();
-    </script>
-</body>
-
-</html>
+{% endblock content%}
