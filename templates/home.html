@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+
     <div class="online_reservation">
         <div class="b_room">
             <div class="booking_room">
@@ -28,10 +29,9 @@
 
                             <div class="section_room">
                                 <select name="category" class="frm-field required" id="country">
-                                    <option value="null">Standard Single Room</option>
-                                    <option value="null">Suite room</option>
-                                    <option value="AX">Single room</option>
-                                    <option value="AX">Double room</option>
+                                    {% for cat1 in category %}
+                                    <option value={{ cat1.id }}>{{ cat1.name }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </li>
@@ -53,47 +53,18 @@
     <div class="rooms text-center">
         <div class="container">
             <h3>Our Room Types</h3>
-            <div class="room-grids">
-                <div class="col-md-4 room-sec">
-                    <img src="{% static 'hotel_management/images/pic1.jpg' %}" alt>
-                    <h4>Standard Double Room</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque lectus vitae dui
-                        sollicitudin commodo.</p>
-                </div>
-                <div class="col-md-4 room-sec">
-                    <img src="{% static 'hotel_management/images/pic2.jpg' %}" alt>
-                    <h4>Supperior Double Room</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque lectus vitae dui
-                        sollicitudin commodo.</p>
+            {% for cat in category %}
 
-                </div>
+            <div class="room-grids">
+
                 <div class="col-md-4 room-sec">
-                    <img src="{% static 'hotel_management/images/pic3.jpg' %}" alt>
-                    <h4>Family Room</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque lectus vitae dui
-                        sollicitudin commodo.</p>
+                    <img src="{{ cat.image.url }}" alt>
+                    <h4>{{ cat.name }}</h4>
+                    <p>{{ cat.description }}</p>
                 </div>
-                <div class="clearfix"></div>
-                <div class="col-md-4 room-sec">
-                    <img src="{% static 'hotel_management/images/pic4.jpg' %}" alt>
-                    <h4>Standard Single Room</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque lectus vitae dui
-                        sollicitudin commodo.</p>
-                </div>
-                <div class="col-md-4 room-sec">
-                    <img src="{% static 'hotel_management/images/pic5.jpg' %}" alt>
-                    <h4>Supperior Single Room</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque lectus vitae dui
-                        sollicitudin commodo.</p>
-                </div>
-                <div class="col-md-4 room-sec">
-                    <img src="{% static 'hotel_management/images/pic6.jpg' %}" alt>
-                    <h4>VIP Room</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent scelerisque lectus vitae dui
-                        sollicitudin commodo.</p>
-                </div>
-                <div class="clearfix"></div>
+                
             </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content%}

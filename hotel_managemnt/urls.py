@@ -18,13 +18,26 @@ from django.contrib.auth import views as auth_view
 from django.urls import path
 from django.views.generic import TemplateView
 from hotel_app.views import register
+from hotel_app.models import Category
+from django.conf.urls.static import static
+from django.conf import settings
+
+
+
 
 class HomeView(TemplateView):
     template_name = "home.html"
+    context={
+        'category':Category.objects.all()
+        }
+   
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', HomeView.as_view()),
+    path('home/', HomeView.as_view(), HomeView.context),
     path('login/', auth_view.LoginView.as_view(template_name='login.html'), name='login'),
     path('register/', register, name='register'),
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

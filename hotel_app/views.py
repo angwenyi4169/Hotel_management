@@ -42,3 +42,10 @@ def register(request):
 		#from .views import search
 		#in urlpatters
 			#url(r'^results/$', search, name = "search"),
+ 
+def get_queryset(request):
+    model = Category
+    template_name = 'search.html'
+    querytype = request.GET['category']
+    object_list = Category.objects.filter(Q(name__icontains=querytype))   
+    return object_list   

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	{% for details in object_list %}
+    <li>
+      {{ details.name }}
+    </li>
+  {% endfor %}
+{% endblock content%}

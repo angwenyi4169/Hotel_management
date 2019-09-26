@@ -20,6 +20,7 @@ CATEGORY_CHOICES = [
 ]
 
 class Category(models.Model):
+    image=models.ImageField(default='default.jpg', upload_to='hotel_pics')
     name = models.CharField(max_length=20, choices=CATEGORY_CHOICES, unique=True)
     description = models.TextField()
     number_of_beds = models.PositiveSmallIntegerField(default=1)
