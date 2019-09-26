@@ -4,6 +4,10 @@
 	{% for details in object_list %}
     <li>
       {{ details.name }}
+      {{ details.description }}
+      {{ details.number_of_beds}}
+      {{ details.price}}
+
     </li>
   {% endfor %}
 {% endblock content%}

@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_view
 from django.urls import path
 from django.views.generic import TemplateView
-from hotel_app.views import register
+from hotel_app.views import register, SearchResultsView
 from hotel_app.models import Category
 from django.conf.urls.static import static
 from django.conf import settings
+
+
 
 
 
@@ -37,6 +39,7 @@ urlpatterns = [
     path('home/', HomeView.as_view(), HomeView.context),
     path('login/', auth_view.LoginView.as_view(template_name='login.html'), name='login'),
     path('register/', register, name='register'),
+    path('search/', SearchResultsView.as_view(), name='search')
 ]
 
 

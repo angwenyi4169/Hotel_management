@@ -3,6 +3,8 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 from django.shortcuts import render
 from django.db.models import Q
+from .models import Category, Room
+from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 
 def register(request):
@@ -43,9 +45,22 @@ def register(request):
 		#in urlpatters
 			#url(r'^results/$', search, name = "search"),
  
-def get_queryset(request):
+# def get_queryset(request):
+#     model = Category
+#     template_name = 'search.html'
+#     querytype = request.GET['category']
+#     print(querytype)
+#     object_list = Category.objects.filter(name=querytype) 
+#     return object_list   
+
+class SearchResultsView(ListView):
     model = Category
     template_name = 'search.html'
-    querytype = request.GET['category']
-    object_list = Category.objects.filter(Q(name__icontains=querytype))   
-    return object_list   
+
+ 
+    def get_queryset(self):
+      
+       query = self.request.GET.get('category')
+       object_list = Category.objects.filter(Q(name__icontains=query))
+       
+       return object_list	

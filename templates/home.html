@@ -25,12 +25,12 @@
                             </div>
                         </li>
                         <li class="span1_of_1">
-                            <h5>Room type</h5>
+                            <h5>Room type</h5>category
 
                             <div class="section_room">
                                 <select name="category" class="frm-field required" id="country">
                                     {% for cat1 in category %}
-                                    <option value={{ cat1.id }}>{{ cat1.name }}</option>
+                                    <option value='{{ cat1.name }}'>{{ cat1.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
