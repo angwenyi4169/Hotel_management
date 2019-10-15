@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from django.utils import timezone
 
 # class Customer(AbstractUser):
 #     # add additional fields in here
@@ -46,5 +46,5 @@ class Room(models.Model):
 class Booking(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    checkin_date = models.DateField()
-    checkout_date = models.DateField()
+    checkin_date = models.DateTimeField(default=timezone.now)
+    checkout_date = models.DateTimeField(default=timezone.now)

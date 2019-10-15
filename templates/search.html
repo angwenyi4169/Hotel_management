@@ -1,13 +1,36 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-	{% for details in object_list %}
-    <li>
-      {{ details.name }}
-      {{ details.description }}
-      {{ details.number_of_beds}}
-      {{ details.price}}
+{% for details in object_list %}
 
-    </li>
-  {% endfor %}
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action active">
+    {{ details.category__name }}
+  </a>
+  <a href="#" class="list-group-item list-group-item-action"> Room Number: {{ details.room_number }}
+  </a>
+  <a href="#" class="list-group-item list-group-item-action"> {{ details.category__description }}
+  </a>
+  <a href="#" class="list-group-item list-group-item-action"> No of beds: {{ details.category__number_of_beds}}
+  </a>
+  <a href="#" class="list-group-item list-group-item-action"> Price: {{ details.category__price}}
+  </a>
+
+
+</div>
+<div class="form-group">
+  <button class="btn book-btn btn-outline-info" type="submit">Book</button>
+</div>
+  <script type="text/javascript">
+     	$('#book-btn').click(
+
+     		function() {
+     			alert('clicked');
+     			$.post( "/book", { room: "John"} );
+     		}
+     	);
+     	
+     </script>
+
+{% endfor %}
 {% endblock content%}

@@ -19,6 +19,12 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'register.html', {'form':form})
 
+def book(request):
+    if request.method == 'POST':
+        query = self.request.POST.get('room')
+    return render(request, 'book.html')
+
+
 
 # Create your views here.
 # def search(request):
@@ -54,13 +60,14 @@ def register(request):
 #     return object_list   
 
 class SearchResultsView(ListView):
-    model = Category
+    model = Room
     template_name = 'search.html'
-
+     
  
     def get_queryset(self):
       
        query = self.request.GET.get('category')
-       object_list = Category.objects.filter(Q(name__icontains=query))
+       object_list = Room.objects.filter(category__name=query).values('room_number', 'category__name', 'category__description', 'category__number_of_beds', 'category__price')
+      # object_list = Category.objects.filter(Q(name__icontains=query))
        
        return object_list	
