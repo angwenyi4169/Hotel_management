@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.db.models import Q
-from .models import Category, Room
+from .models import Category, Room, Booking
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 
@@ -21,8 +22,22 @@ def register(request):
 
 def book(request):
     if request.method == 'POST':
-        query = self.request.POST.get('room')
+        query = request.POST.get('room')
         print(query)
+    elif request.method == 'GET':
+        #room, customer
+        room_number = request.GET.get('room_number')
+        user_name = request.user.get_username()
+        if request.user.is_authenticated:
+            customer = request.user
+            room = Room.objects.get(room_number=room_number)
+            if room.available:
+                print('Room is available')
+                booking = Booking(customer=customer, room=room)
+                booking.save()
+            else:
+                print("Room Not available")
+
     return render(request, 'book.html')
 
 

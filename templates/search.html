@@ -31,11 +31,12 @@
           alert('No payment module integrated,However '+room_category+' room number, ' +room_number+ ' was Successfully booked');
 
      			// $.post( "/book/", { room: room_number} );
-          var url = '/home/';
+          var url = '/book/';
           url += "?room_number="+room_number;
-          url += "&room_price=" + room_price;
-          url += "&room_category=" + room_category;
-          document.location.replace(url)
+          // url += "&room_price=" + room_price;
+          // url += "&room_category=" + room_category;
+          // document.location.replace(url)
+          document.location.replace(url);
      		}
      	);
      	

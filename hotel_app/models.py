@@ -1,3 +1,4 @@
+import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
@@ -37,14 +38,15 @@ class Room(models.Model):
     
     @property
     def available(self):
-        pass
+        occupied_rooms = self.booked_rooms.filter(checkin_date__gte=datetime.date.today())
+        return occupied_rooms.count() == 0
 
     def __str__(self):
         return "{} - {}".format(self.room_number, self.category.name)
 
 
 class Booking(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='booked_rooms')
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     checkin_date = models.DateTimeField(default=timezone.now)
     checkout_date = models.DateTimeField(default=timezone.now)
