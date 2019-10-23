@@ -19,14 +19,23 @@
 
 </div>
 <div class="form-group">
-  <button class="btn book-btn btn-outline-info" type="submit">Book</button>
+  <button class="btn book-btn btn-outline-info" data-room-number="{{ details.room_number }}" data-room-price="{{ details.category__price }}" data-room-category="{{ details.category__name }}"type="submit">Book</button>
 </div>
   <script type="text/javascript">
-     	$('#book-btn').click(
+     	$('.book-btn').click(
 
      		function() {
-     			alert('clicked');
-     			$.post( "/book", { room: "John"} );
+          var room_number = $(this).attr('data-room-number');
+          var room_price = $(this).attr('data-room-price');
+          var room_category = $(this).attr('data-room-category');
+          alert('No payment module integrated,However '+room_category+' room number, ' +room_number+ ' was Successfully booked');
+
+     			// $.post( "/book/", { room: room_number} );
+          var url = '/home/';
+          url += "?room_number="+room_number;
+          url += "&room_price=" + room_price;
+          url += "&room_category=" + room_category;
+          document.location.replace(url)
      		}
      	);
      	

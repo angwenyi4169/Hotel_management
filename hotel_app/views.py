@@ -22,6 +22,7 @@ def register(request):
 def book(request):
     if request.method == 'POST':
         query = self.request.POST.get('room')
+        print(query)
     return render(request, 'book.html')
 
 
