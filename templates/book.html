@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    success
+    {% if resp.room is None%}
+        Failure {{resp.message}}
+    {% else %}
+        Success! {{ resp.message }}
+        <div class="fix">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    {{ resp.room.category.name }}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action"> Room Number: {{ resp.room.room_number }}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action"> {{ resp.room.category.description }}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action"> No of beds: {{ resp.room.category.number_of_beds}}
+                </a>
+                <a href="#" class="list-group-item list-group-item-action"> Price: {{ resp.room.category.price}}
+                </a>
+            </div>
+        </div>
+        
+    {% endif %}
 {% endblock content%}

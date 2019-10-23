@@ -8,13 +8,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	color: #E8E8E8;
 	padding: 5px 10px;
 }
+.fix{
+	margin: 20px 250px;
+}
+div.bg{
+	opacity: .9;
+	background-image: url(/media/hotel_pics/background.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
 
+}
 .custom-form{
 	padding: 0px;
 	margin: 0px;
 }
 html, body{
-  	font-family: 'Open Sans', sans-serif;
+  	font-family: 'Times New Roman', Times, serif;
     font-size: 100%;
   	background: #FFf;
 	

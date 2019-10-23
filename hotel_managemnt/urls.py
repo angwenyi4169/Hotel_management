@@ -37,6 +37,7 @@ class HomeView(TemplateView):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', HomeView.as_view(), HomeView.context),
     path('home/', HomeView.as_view(), HomeView.context),
     path('login/', auth_view.LoginView.as_view(template_name='login.html'), name='login'),
     path('register/', register, name='register'),

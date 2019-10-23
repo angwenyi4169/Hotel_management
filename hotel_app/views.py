@@ -26,19 +26,32 @@ def book(request):
         print(query)
     elif request.method == 'GET':
         #room, customer
+        resp = {
+            "message": "",
+            "msg_code": "",
+            "room": None
+        }
+
         room_number = request.GET.get('room_number')
-        user_name = request.user.get_username()
         if request.user.is_authenticated:
             customer = request.user
             room = Room.objects.get(room_number=room_number)
+            resp['room'] = room
             if room.available:
                 print('Room is available')
                 booking = Booking(customer=customer, room=room)
                 booking.save()
+                resp['message'] = "Room booked successfully"
+                resp['room'] = room
             else:
+                resp['message'] = "Room not available for booking"
+                resp['msg_code'] = "ROOM_UNA"
                 print("Room Not available")
+        else:
+            resp['message'] = "Please authenticate"
+            resp['msg_code'] = "NO_AUTH"
 
-    return render(request, 'book.html')
+    return render(request, 'book.html', {'resp':resp})
 
 
 
